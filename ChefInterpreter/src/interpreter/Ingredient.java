@@ -7,14 +7,14 @@ public class Ingredient {
 	}
 	
 	private String name;
-	private int amount;
+	private Integer amount;
 	private State state;
 	
 	public Ingredient(String name) {
 		this.name = name;
 	}
 	
-	public Ingredient(int n, State s, String name) {
+	public Ingredient(Integer n, State s, String name) {
 		this.amount = n;
 		this.state = s;
 		this.name = name;
