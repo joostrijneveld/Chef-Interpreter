@@ -1,4 +1,4 @@
-package com.chef.interpreter;
+package interpreter;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;

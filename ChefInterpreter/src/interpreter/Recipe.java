@@ -1,4 +1,4 @@
-package com.chef.interpreter;
+package interpreter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

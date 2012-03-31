@@ -1,4 +1,4 @@
-package com.chef.interpreter;
+package interpreter;
 
 public class Ingredient {
 
