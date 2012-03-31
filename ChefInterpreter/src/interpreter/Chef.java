@@ -14,7 +14,8 @@ public class Chef {
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1)
 			throw new Exception("No recipe found! Usage: Chef recipe.chef");
-		new Method("Verb the potatoe until verbed.", 0);
+		//new Method("Verb the potatoe until verbed.", 0);
+		new Ingredient("100 g dijon mustard");
 		//String line = "Take pot atoe from refrigerator.";
 		//System.out.println(line.matches("^Take ([a-zA-Z])* from refrigerator.$"));
 		//Chef interpreter = new Chef(args[0]);

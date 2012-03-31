@@ -224,10 +224,6 @@ public class Method {
 			}
 		}	 
 	}*/
-	
-	private Integer nthToInt(String string) {
-		return Integer.parseInt(string.substring(0));
-	}
 
 	public static String arrayToString(Object[] a, String separator) {
 		return arrayToString(a, separator, 0, a.length);
