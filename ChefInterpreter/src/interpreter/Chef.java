@@ -2,11 +2,8 @@ package interpreter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Chef {
 
@@ -17,7 +14,9 @@ public class Chef {
 	public static void main(String[] args) throws Exception {
 		if (args.length < 1)
 			throw new Exception("No recipe found! Usage: Chef recipe.chef");
-		Chef interpreter = new Chef(args[0]);
+		//String line = "Take pot atoe from refrigerator.";
+		//System.out.println(line.matches("^Take ([a-zA-Z])* from refrigerator.$"));
+		//Chef interpreter = new Chef(args[0]);
 		//interpreter.execute();
 	}
 	

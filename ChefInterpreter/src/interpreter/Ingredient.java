@@ -10,8 +10,37 @@ public class Ingredient {
 	private Integer amount;
 	private State state;
 	
-	public Ingredient(String name) {
-		this.name = name;
+	public Ingredient(String ingredient) throws ChefException {
+		String[] tokens = ingredient.split(" ");
+		int i = 0;
+		if (tokens[i].matches("^\\d*$"))
+		{
+			amount = Integer.parseInt(tokens[i]);
+			i++;
+			if (tokens[i].equals("heaped") || tokens[i].equals("level")) {
+				state = tokens[i].equals("heaped") ? Ingredient.State.Dry : Ingredient.State.Liquid;
+				i++;
+			}
+			if (tokens[i].matches("^g|kg|pinch(es)?")) {
+				state = Ingredient.State.Dry;
+				i++;
+			}
+			else if (tokens[i].matches("^ml|l|dash(es)?")) {
+				state = Ingredient.State.Liquid;
+				i++;
+			}
+			else if (tokens[i].matches("^cup(s)?|teaspoon(s)?|tablespoon(s)?")) {
+				i++;
+			}
+		}
+		name = "";
+		while (i < tokens.length) {
+			name += tokens[i] + " ";
+			i++;
+		}
+		if (name.equals("")) {
+			throw new ChefException(ChefException.INGREDIENT, tokens, "ingredient name missing");
+		}
 	}
 	
 	public Ingredient(Integer n, State s, String name) {
@@ -38,5 +67,9 @@ public class Ingredient {
 	
 	public void dry() {
 		state = State.Dry;
+	}
+
+	public String getName() {
+		return name;
 	}
 }

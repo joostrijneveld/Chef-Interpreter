@@ -3,15 +3,15 @@ package interpreter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-import java.util.regex.Pattern;
 
 public class Recipe {
 
 	private String title;
 	private HashMap<String,Ingredient> ingredients;
 	private String comment;
-	private String cookingtime;
-	private String oventemp;
+	private int cookingtime;
+	private int oventemp;
+	private int gasmark;
 	private ArrayList<Method> methods;
 	private int serves;
 	
@@ -23,45 +23,12 @@ public class Recipe {
 	public void setIngredients(String ingredients) throws ChefException
 	{
 		this.ingredients = new HashMap<String, Ingredient>();
-		Scanner scanner = new Scanner(ingredients);
+		Scanner scanner = new Scanner(ingredients).useDelimiter("\n");
 		//Clearing the 'Ingredients.' header
 		scanner.next();
 		while (scanner.hasNext()) {
-			String[] tokens = scanner.next().split(" ");
-			Integer amount = null;
-			Ingredient.State state = null;
-			int i = 0;
-			if (tokens[i].matches("^\\d*$"))
-			{
-				amount = Integer.parseInt(tokens[i]);
-				i++;
-				if (tokens[i].equals("heaped") || tokens[i].equals("level")) {
-					state = tokens[i].equals("heaped") ? Ingredient.State.Dry : Ingredient.State.Liquid;
-					i++;
-				}
-				if (tokens[i].matches("^g|kg|pinch(es)?")) {
-					state = Ingredient.State.Dry;
-					i++;
-				}
-				else if (tokens[i].matches("^ml|l|dash(es)?")) {
-					state = Ingredient.State.Liquid;
-					i++;
-				}
-				else if (tokens[i].matches("^cup(s)?|teaspoon(s)?|tablespoon(s)?")) {
-					i++;
-				}
-				else {
-					throw new ChefException(ChefException.LOCAL, "Ingredient "+tokens+" is wrongly formatted (unit missing)");
-				}
-			}
-			String name = "";
-			while (i < tokens.length) {
-				name += tokens[i] + " ";
-			}
-			if (name.equals("")) {
-				throw new ChefException(ChefException.LOCAL, "Ingredient "+tokens+" is wrongly formatted (ingredient missing)");
-			}
-			this.ingredients.put(name.toLowerCase(),new Ingredient(amount, state, name));
+			Ingredient ing = new Ingredient(scanner.next());
+			this.ingredients.put(ing.getName().toLowerCase(), ing);
 		}
 	}
 	
@@ -70,19 +37,31 @@ public class Recipe {
 		this.comment = comment;
 	}
 	
-	public void setMethod(String method)
+	public void setMethod(String method) throws ChefException
 	{
-		this.methods = parseMethods(method);
+		this.methods = new ArrayList<Method>();
+		method = method.replaceAll("\n", "");
+		method = method.replaceAll("\\. ","");
+		Scanner scanner = new Scanner(method).useDelimiter(". ");
+		//Clearing the 'Method.' header
+		scanner.next();
+		for (int i = 0; scanner.hasNext(); i++) {
+			this.methods.add(new Method(scanner.next(), i));
+		}
 	}
 	
 	public void setCookingTime(String cookingtime)
 	{
-		this.cookingtime = cookingtime;
+		this.cookingtime = Integer.parseInt(cookingtime.split(" ")[2]);
 	}
 	
 	public void setOvenTemp(String oventemp)
 	{
-		this.oventemp = oventemp;
+		this.oventemp = Integer.parseInt(oventemp.split(" ")[3]);
+		if (oventemp.matches("gas mark")) {
+			String mark = oventemp.split(" ")[8];
+			this.gasmark = Integer.parseInt(mark.substring(0, mark.length()-1));
+		}
 	}
 	
 	public void setServes(String serves) {
@@ -96,11 +75,6 @@ public class Recipe {
 	
 	public String getTitle() {
 		return title;
-	}
-	
-	private ArrayList<Method> parseMethods(String methods2) {
-		// TODO Auto-generated method stub
-		return new ArrayList<Method>();
 	}
 	
 }
