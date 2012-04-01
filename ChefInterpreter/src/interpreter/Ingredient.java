@@ -1,5 +1,7 @@
 package interpreter;
 
+import interpreter.Ingredient.State;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -20,8 +22,8 @@ public class Ingredient {
 		{
 			amount = Integer.parseInt(tokens[i]);
 			i++;
-			if (tokens[i].equals("heaped") || tokens[i].equals("level")) {
-				state = tokens[i].equals("heaped") ? Ingredient.State.Dry : Ingredient.State.Liquid;
+			if (tokens[i].matches("heaped|level")) {
+				state = Ingredient.State.Dry;
 				i++;
 			}
 			if (tokens[i].matches("^g|kg|pinch(es)?")) {
@@ -38,7 +40,7 @@ public class Ingredient {
 		}
 		name = "";
 		while (i < tokens.length) {
-			name += tokens[i] + " ";
+			name += tokens[i] + (i == tokens.length-1 ? "" : " ");
 			i++;
 		}
 		if (name.equals("")) {
@@ -74,5 +76,9 @@ public class Ingredient {
 
 	public String getName() {
 		return name;
+	}
+
+	public void setState(State s) {
+		state = s;
 	}
 }

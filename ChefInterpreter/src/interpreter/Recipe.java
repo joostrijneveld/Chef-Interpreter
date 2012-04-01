@@ -41,12 +41,12 @@ public class Recipe {
 	{
 		this.methods = new ArrayList<Method>();
 		method = method.replaceAll("\n", "");
-		method = method.replaceAll("\\. ","");
-		Scanner scanner = new Scanner(method).useDelimiter(". ");
+		method = method.replaceAll("\\. ",".");
+		Scanner scanner = new Scanner(method).useDelimiter("\\.");
 		//Clearing the 'Method.' header
 		scanner.next();
 		for (int i = 0; scanner.hasNext(); i++) {
-			this.methods.add(new Method(scanner.next(), i));
+			this.methods.add(new Method(scanner.next() + ".", i));
 		}
 	}
 	
@@ -77,4 +77,23 @@ public class Recipe {
 		return title;
 	}
 	
+	public int getIngredientValue(String s) {
+		return ingredients.get(s).getAmount();
+	}
+	
+	public void setIngredientValue(String s, int n) {
+		ingredients.get(s).setAmount(n);
+	}
+	
+	public Method getMethod(int i) {
+		return methods.get(i);
+	}
+	
+	public ArrayList<Method> getMethods() {
+		return methods;
+	}
+	
+	public HashMap<String,Ingredient> getIngredients() {
+		return ingredients;
+	}
 }

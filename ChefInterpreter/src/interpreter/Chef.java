@@ -15,16 +15,18 @@ public class Chef {
 		if (args.length < 1)
 			throw new Exception("No recipe found! Usage: Chef recipe.chef");
 		//new Method("Verb the potatoe until verbed.", 0);
-		new Ingredient("100 g dijon mustard");
+		//new Ingredient("100 g dijon mustard");
 		//String line = "Take pot atoe from refrigerator.";
 		//System.out.println(line.matches("^Take ([a-zA-Z])* from refrigerator.$"));
-		//Chef interpreter = new Chef(args[0]);
-		//interpreter.execute();
+		//new Method("Put potatoes into the mixing bowl.",0);
+		Chef interpreter = new Chef(args[0]);
+		interpreter.bake();
 	}
 	
 	File file;
 	Scanner scan;
 	HashMap<String, Recipe> recipes;
+	Recipe mainrecipe;
 	
 	public Chef(String filename) throws ChefException {
 		recipes = new HashMap<String, Recipe>();
@@ -40,6 +42,8 @@ public class Chef {
 					if (progress == 0) {
 						String title = scan.next();
 						r = new Recipe(title);
+						if (mainrecipe == null)
+							mainrecipe = r;
 						progress = 1;
 					}
 					recipes.put(r.getTitle().toLowerCase(), r);
@@ -112,9 +116,9 @@ public class Chef {
 		return null;
 	}
 
-	public void execute() {
-		// TODO Auto-generated method stub 
-		
+	public void bake() throws ChefException {
+		Kitchen k = new Kitchen(recipes, mainrecipe);
+		k.cook();
 	}
 
 }

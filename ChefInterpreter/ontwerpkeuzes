@@ -1,0 +1,5 @@
+Ontwerpkeuzes:
+
+- Add: "This adds the value of ingredient to the value of the ingredient on top of the nth mixing bowl and stores the result in the nth mixing bowl."
+We kiezen hier om de state van de waarde op de mixing bowl te behouden, en niet die van de ingredient.
+Verder geldt dit voorbeeld: stel ingredient A = 2, bowl 0 = [3]. Dan na add geldt A = 2, bowl 0 = [3,5]
