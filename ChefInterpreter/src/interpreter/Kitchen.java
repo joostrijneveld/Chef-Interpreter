@@ -88,6 +88,7 @@ public class Kitchen {
 					throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Unsupported method found!");
 				case Mix :
 					mixingbowls[m.mixingbowl].shuffle();
+					break;
 				case Clean :
 					mixingbowls[m.mixingbowl].clean();
 					break;

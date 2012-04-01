@@ -42,7 +42,7 @@ public class Container {
 	
 	public String serve() {
 		String result = "";
-		for (int i = contents.size()-1; i > 0; i--) {
+		for (int i = contents.size()-1; i >= 0; i--) {
 			if (contents.get(i).getState() == State.Dry) {
 				result += contents.get(i).getValue();
 			}
