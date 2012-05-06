@@ -1,0 +1,37 @@
+kitchen |- <S, (M, B, I, F)> -> ((M`, B`, I`, F`), T)
+
+--
+Informeel: 
+
+kitchen is de omgeving met eventuele sous-chefs
+S is een statement in Chef
+M zijn de mixing bowls. M is een lijst van lijsten (stacks).
+B zijn de baking dishes. B is een lijst van lijsten (stacks).
+I is een functie die de waarde en fase van een ingredient oplevert.
+F is de koelkast; een lijst van waarden uit STDIN
+T is de break/continue/proceed
+
+--
+Formeel:
+
+##hier even alle statements, zie http://www.dangermouse.net/esoteric/chef.html
+S :: 
+
+I: String -> (Integer, Phase)
+Phase :: L | S
+i :: (Integer, Phase)
+
+## Dubbele '=' is net als bij Dv een beetje raar overloaded. Even opzoeken hoe dat daar is
+M = [m:M]
+M = Epsilon
+m = [i:m]
+m = Epsilon
+
+B = [m:B]
+B = Epsilon
+b = [i:b]
+b = Epsilon
+
+F = [f:F]
+F = Epsilon
+f :: Integer
