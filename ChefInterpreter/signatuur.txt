@@ -15,23 +15,86 @@ T is de break/continue/proceed
 Formeel:
 
 ##hier even alle statements, zie http://www.dangermouse.net/esoteric/chef.html
-S :: 
+S   	:: Here be dragons //@TODO
 
-I: String -> (Integer, Phase)
-Phase :: L | S
-i :: (Integer, Phase)
+I : String -> Ingr
 
-## Dubbele '=' is net als bij Dv een beetje raar overloaded. Even opzoeken hoe dat daar is
-M = [m:M]
-M = Epsilon
-m = [i:m]
-m = Epsilon
+Phase 	:: L | S
+Ingr 		:: (Integer, Phase)
 
-B = [m:B]
-B = Epsilon
-b = [i:b]
-b = Epsilon
+M		:: [m : M] 		| ε
+m		:: [Ingr : m] 		| ε
 
-F = [f:F]
+B		:: [b : B] 		| ε
+b		:: [Ingr : b] 		| ε
+
+F 		:: [Integer : F]	| ε
+
+T		:: 0 | @ | *
+
 F = Epsilon
 f :: Integer
+
+## nodige functies
+pushMB : (Integer, Phase) Integer M -> M
+pushMB((v, p), n, [m:M])  	{= [(v,p) : m]                 	n = 0
+                          	{= [m:pushMB((v,p), n-1, M)]   	n > 0
+
+
+headMB : Integer M -> (Integer, Phase)
+headMB(n, [[(v,p):m]:M])	{= (v, p)					n = 0
+					{= headMB(n-1, M)			n > 0
+
+tailMB : Integer M -> M
+tailMB(n, [[(v,p):m]:M])	{= m						n = 0
+					{= tailMB(n-1, M)			n > 0
+
+ingrVal : (Integer, Phase) -> Integer
+ingrVal (v, p) = v
+
+ingrPhase : (Integer, Phase) -> Phase
+ingrPhase : (v, p) = p
+
+
+f(X) = [hd(X) : tail(X)] (is gelijk aan X)
+
+
+## Concatenatieregel heeft nog geen rekening gehouden met break en continue. Hihi.
+0)	kitchen |- <S_1, (M, B, I, F)> -> ((M``, B``, I``, F``), T)	kitchen |- <S_2, M``, B``, I``, F``)> -> ((M`, B`, I`, F`), T`)
+	____________________________________________________________________________________________________________________
+	kitchen |- <S_1. S_2, (M, B, I, F)>						-> ((M`, B`, I`, F`), T`)
+
+1)	kitchen |- <Take ingr from refrigerator, (M, B, I, [f:F])> 	-> ((M, B, I[ingr -> (f, phase(ingr))], F), 0)
+
+2a)	kitchen |- <Put ingr into nth mixing bowl, (M, B, I, F)> 			-> ((headMB(n, M), B, I, F), 0) 
+2b)	kitchen |- <Put ingr into mixing bowl, (M, B, I, F)> 			-> ((headMB(0, M), B, I, F), 0)
+
+3a)	kitchen |- <Fold ingr into [nth] mixing bowl, (M, B, I, F])>		-> ((headMB(n, M), B, I[ingr -> popMB(n, M)], F), 0)
+3b)	kitchen |- <Fold ingr into mixing bowl, (M, B, I, F])>			-> ((headMB(0, M), B, I[ingr -> popMB(0, M)], F), 0)
+3c)	kitchen |- <Fold ingr, (M, B, I, F])>						-> ((headMB(0, M), B, I[ingr -> popMB(0, M)], F), 0)
+
+4a)	kitchen |- <Add ingr to nth mixing bowl, (M, B, I, F)> 		-> ((pushMB((ingrVal(head(n, M)) + ingrVal(ingr), ingrPhase(head(n, M))), n, tail(n, M)), B, I, F), 0)
+4b)	kitchen |- <Add ingr to mixing bowl, (M, B, I, F)> 			-> ((pushMB((ingrVal(head(0, M)) + ingrVal(ingr), ingrPhase(head(0, M))), 0, tail(n, M)), B, I, F), 0)
+4c)	kitchen |- <Add ingr, (M, B, I, F)> 						-> ((pushMB((ingrVal(head(0, M)) + ingrVal(ingr), ingrPhase(head(0, M))), 0, tail(n, M)), B, I, F), 0)
+
+5a)	kitchen |- <Remove ingr from nth mixing bowl, (M, B, I, F)>		-> ((pushMB(ingrVal(ingr) - (ingrVal(popMB(n, M)), ingrPhase(popMB(n, M))) n M), B, I, F), 0)
+5b)	kitchen |- <Remove ingr from mixing bowl, (M, B, I, F)>			-> ((pushMB(ingrVal(ingr) - (ingrVal(popMB(0, M)), ingrPhase(popMB(0, M))) n M), B, I, F), 0)
+5c)	kitchen |- <Remove ingr, (M, B, I, F)>						-> ((pushMB(ingrVal(ingr) - (ingrVal(popMB(0, M)), ingrPhase(popMB(0, M))) n M), B, I, F), 0)
+
+6a)	kitchen |- <Combine ingr from nth mixing bowl, (M, B, I, F)>		-> ((pushMB(ingrVal(ingr) * (ingrVal(popMB(n, M)), ingrPhase(popMB(n, M))) n M), B, I, F), 0)
+6b)	kitchen |- <Combine ingr from mixing bowl, (M, B, I, F)>			-> ((pushMB(ingrVal(ingr) * (ingrVal(popMB(0, M)), ingrPhase(popMB(0, M))) n M), B, I, F), 0)
+6c)	kitchen |- <Combine ingr, (M, B, I, F)>						-> ((pushMB(ingrVal(ingr) * (ingrVal(popMB(0, M)), ingrPhase(popMB(0, M))) n M), B, I, F), 0)
+
+7a)	kitchen |- <Divide ingr into nth mixing bowl, (M, B, I, F)> 	-> ((pushMB(ingrVal(ingr) / (ingrVal(head(n, M)), ingrPhase(head(n, M))), n, tail(n, M)), B, I, F), 0)
+7b)	kitchen |- <Divide ingr into mixing bowl, (M, B, I, F)> 		-> ((pushMB(ingrVal(ingr) / (ingrVal(head(0, M)), ingrPhase(head(0, M))), 0, tail(0, M)), B, I, F), 0)
+7c)	kitchen |- <Divide ingr, (M, B, I, F)> 					-> ((pushMB(ingrVal(ingr) / (ingrVal(head(0, M)), ingrPhase(head(0, M))), 0, tail(0, M)), B, I, F), 0)
+
+
+8)	kitchen |- <Add dry ingredients to nth mixing bowl, (M, B, I, F)> ->	OK DIT GAAN WE VRAGEN
+
+9a)	kitchen |- <Liquefy ingr, (M, B, I, F)>						-> ((M, B, I[ingr -> (ingrVal(I[ingr]), L)], F), 0)
+9b)	kitchen |- <Liquify ingr, (M, B, I, F)>						-> ((M, B, I[ingr -> (ingrVal(I[ingr]), L)], F), 0)
+
+10)	<Liquefy
+_____________________________________________________________________________________________________________________________________________________
+kitchen |- <Liquefy contents of the nth mixing bowl, (M, B, I, F)>	-> 
