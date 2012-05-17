@@ -51,7 +51,7 @@ public class Container {
 				result += contents.get(i).getValue()+" ";
 			}
 			else {
-				result += Character.toChars(contents.get(i).getValue())[0];
+				result += Character.toChars((int) (contents.get(i).getValue() % 1112064))[0];
 			}
 		}
 		return result;

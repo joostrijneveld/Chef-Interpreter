@@ -61,6 +61,20 @@ public class Kitchen {
 		methodloop: while (i < methods.size() && !deepfrozen) {
 			Method m = methods.get(i);
 			switch (m.type) {
+				case Take :
+				case Put :
+				case Fold :
+				case Add :
+				case Remove :
+				case Combine :
+				case Divide :
+				case Liquefy :
+				case StirInto :
+				case Verb :
+					if (ingredients.get(m.ingredient) == null)
+						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Ingredient not found: "+m.ingredient);
+			}
+			switch (m.type) {
 				case Take : 
 					ingredients.get(m.ingredient).setAmount(input.nextInt());
 					break;
@@ -68,8 +82,6 @@ public class Kitchen {
 					mixingbowls[m.mixingbowl].push(new Component(ingredients.get(m.ingredient)));
 					break;
 				case Fold :
-					if (ingredients.get(m.ingredient) == null)
-						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Ingredient not found: "+m.ingredient);
 					c = mixingbowls[m.mixingbowl].pop();
 					ingredients.get(m.ingredient).setAmount(c.getValue());
 					ingredients.get(m.ingredient).setState(c.getState());
@@ -180,7 +192,7 @@ public class Kitchen {
 				verb.equals(imp+"d") || //prepare ~ prepared
 				verb.equals(imp+"ed") || //monitor ~ monitored
 				verb.equals(imp+(imp.charAt(L-1))+"ed") || //stir ~ stirred
-				(imp.charAt(L-1) == 'y' && verb.equals(imp.substring(0, L-1)+"ied"));
+				(imp.charAt(L-1) == 'y' && verb.equals(imp.substring(0, L-1)+"ied")); //carry ~ carried
 	}
 
 	private class LoopData {
