@@ -130,10 +130,10 @@ public class Method {
 			auxrecipe = matcher.group(1);
 			return;
 		}
-		matcher = Pattern.compile("^([a-zA-Z]+)( the ([a-zA-Z ]+))? until ((?i)\\1)ed.$").matcher(line);
+		matcher = Pattern.compile("^([a-zA-Z]+)( the ([a-zA-Z ]+))? until ([a-zA-Z]+).$").matcher(line);
 		if (matcher.find()) {
 			type = Type.VerbUntil;
-			verb = matcher.group(1);
+			verb = matcher.group(4);
 			ingredient = matcher.group(3);
 			return;
 		}

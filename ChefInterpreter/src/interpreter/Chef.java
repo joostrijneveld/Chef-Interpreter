@@ -2,6 +2,7 @@ package interpreter;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -30,7 +31,7 @@ public class Chef {
 	
 	public Chef(String filename) throws ChefException {
 		recipes = new HashMap<String, Recipe>();
-		System.out.print("Reading recipe(s) from '"+filename+"'.. ");
+		//System.out.print("Reading recipe(s) from '"+filename+"'.. ");
 		try {
 			file = new File(filename);
 			scan = new Scanner(file);
@@ -46,7 +47,7 @@ public class Chef {
 							mainrecipe = r;
 						progress = 1;
 					}
-					recipes.put(r.getTitle().toLowerCase(), r);
+					recipes.put(r.getTitle(), r);
 					while (scan.hasNext()) {
 						String line = scan.next();
 						if (line.startsWith("Ingredients")) {
@@ -75,7 +76,7 @@ public class Chef {
 						}
 						else if (line.startsWith("Serves")) {
 							if (progress != 6)
-								throw new ChefException(ChefException.STRUCTURAL, "Read unexpected "+progressToExpected(4)+". Expecting "+progressToExpected(progress));
+								throw new ChefException(ChefException.STRUCTURAL, "Read unexpected "+progressToExpected(6)+". Expecting "+progressToExpected(progress));
 							progress = 0;
 							r.setServes(line);
 							break;
@@ -88,9 +89,11 @@ public class Chef {
 							else if (progress >= 6) {
 								progress = 1;
 								r = new Recipe(line);
+								break;
 							}
-							else
-								throw new ChefException(ChefException.STRUCTURAL, "Read unexpected comments/title. Expecting "+progressToExpected(progress));
+							else {
+								throw new ChefException(ChefException.STRUCTURAL, "Read unexpected comments/title. Expecting "+progressToExpected(progress)+" Hint:"+structHint(progress));
+							}
 						}
 					}
 				}
@@ -100,9 +103,16 @@ public class Chef {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Done!");
+		//System.out.println("Done!");
 	}
 	
+	private String structHint(int progress) {
+		switch (progress) {
+			case 2 : return "did you specify 'Method.' above the methods?";
+		}
+		return "no hint available";
+	}
+
 	private String progressToExpected(int progress) {
 		switch (progress) {
 			case 0 : return "title";

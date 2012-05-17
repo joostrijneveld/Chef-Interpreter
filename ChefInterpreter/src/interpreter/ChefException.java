@@ -17,7 +17,7 @@ public class ChefException extends Exception {
 	}
 	
 	public ChefException(int type, int step, String method, String error) {
-		super("Method error, step "+step+": "+method+" ("+error+")");
+		super("Method error, step "+(step+1)+": "+method+" ("+error+")");
 	}
 	
 	private static String typeToText(int type)

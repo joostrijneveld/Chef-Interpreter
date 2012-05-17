@@ -13,6 +13,10 @@ public class Container {
 		contents = new ArrayList<Component>();
 	}
 	
+	public Container(Container container) {
+		contents = new ArrayList<Component>(container.contents);
+	}
+
 	public void push(Component c) {
 		contents.add(c);
 	}
@@ -55,5 +59,11 @@ public class Container {
 
 	public void shuffle() {
 		Collections.shuffle(contents);
+	}
+
+	public void stir(int time) {
+		for (int i = 0; i < time && i + 1< contents.size(); i++) {
+			Collections.swap(contents, i, i+1);
+		}
 	}
 }
