@@ -48,7 +48,7 @@ public class Container {
 		String result = "";
 		for (int i = contents.size()-1; i >= 0; i--) {
 			if (contents.get(i).getState() == State.Dry) {
-				result += contents.get(i).getValue();
+				result += contents.get(i).getValue()+" ";
 			}
 			else {
 				result += Character.toChars(contents.get(i).getValue())[0];

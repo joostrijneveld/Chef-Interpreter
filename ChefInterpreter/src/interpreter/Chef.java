@@ -47,7 +47,7 @@ public class Chef {
 							mainrecipe = r;
 						progress = 1;
 					}
-					recipes.put(r.getTitle(), r);
+					recipes.put(parseTitle(r.getTitle()), r);
 					while (scan.hasNext()) {
 						String line = scan.next();
 						if (line.startsWith("Ingredients")) {
@@ -106,6 +106,13 @@ public class Chef {
 		//System.out.println("Done!");
 	}
 	
+	private String parseTitle(String title) {
+		if (title.charAt(title.length() - 1) == '.') {
+			title = title.substring(0,title.length()-1);
+		}
+		return title.toLowerCase();
+	}
+
 	private String structHint(int progress) {
 		switch (progress) {
 			case 2 : return "did you specify 'Method.' above the methods?";

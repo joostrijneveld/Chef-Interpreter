@@ -68,6 +68,8 @@ public class Kitchen {
 					mixingbowls[m.mixingbowl].push(new Component(ingredients.get(m.ingredient)));
 					break;
 				case Fold :
+					if (ingredients.get(m.ingredient) == null)
+						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Ingredient not found: "+m.ingredient);
 					c = mixingbowls[m.mixingbowl].pop();
 					ingredients.get(m.ingredient).setAmount(c.getValue());
 					ingredients.get(m.ingredient).setState(c.getState());
@@ -145,15 +147,15 @@ public class Kitchen {
 						continue methodloop;
 					}
 				case Serve :
-					if (recipes.get(m.auxrecipe) == null) {
+					if (recipes.get(m.auxrecipe.toLowerCase()) == null)
 						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Unavailable recipe: "+m.auxrecipe);
-					}
-					Kitchen k = new Kitchen(recipes, recipes.get(m.auxrecipe), mixingbowls, bakingdishes);
+					Kitchen k = new Kitchen(recipes, recipes.get(m.auxrecipe.toLowerCase()), mixingbowls, bakingdishes);
 					Container con = k.cook();
 					mixingbowls[0].combine(con);
 					break;
 				case Refrigerate :
-					serve(m.time);
+					if (m.time > 0)
+						serve(m.time);
 					deepfrozen = true;
 					break;
 				default :

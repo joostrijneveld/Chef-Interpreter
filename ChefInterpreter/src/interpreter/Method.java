@@ -121,7 +121,7 @@ public class Method {
 		matcher = Pattern.compile("^Refrigerate( for (\\d+) hours)?.$").matcher(line);
 		if (matcher.find()) {
 			type = Type.Refrigerate;
-			time = matcher.group(2) == null ? 1 : Integer.parseInt(matcher.group(2));
+			time = matcher.group(2) == null ? 0 : Integer.parseInt(matcher.group(2));
 			return;
 		}
 		matcher = Pattern.compile("^Serve with ([a-zA-Z ]+).$").matcher(line);
