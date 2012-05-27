@@ -8,9 +8,13 @@ public class Recipe {
 
 	private String title;
 	private HashMap<String,Ingredient> ingredients;
+	@SuppressWarnings("unused")
 	private String comment;
+	@SuppressWarnings("unused")
 	private int cookingtime;
+	@SuppressWarnings("unused")
 	private int oventemp;
+	@SuppressWarnings("unused")
 	private int gasmark;
 	private ArrayList<Method> methods;
 	private int serves;

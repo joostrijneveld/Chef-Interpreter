@@ -55,7 +55,7 @@ public class Kitchen {
 		ArrayList<Method> methods = recipe.getMethods();
 		LinkedList<LoopData> loops = new LinkedList<LoopData>();
 		Scanner input = new Scanner(System.in);
-		Component c, c2;
+		Component c;
 		int i = 0;
 		boolean deepfrozen = false;
 		methodloop: while (i < methods.size() && !deepfrozen) {
@@ -137,7 +137,7 @@ public class Kitchen {
 							break;
 					if (end == methods.size()) 
 						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Loop end statement not found.");
-					if (ingredients.get(m.ingredient).getAmount() == 0) {
+					if (ingredients.get(m.ingredient).getAmount() <= 0) {
 						i = end + 1;
 						continue methodloop;
 					}

@@ -1,10 +1,5 @@
 package interpreter;
 
-import interpreter.Ingredient.State;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Ingredient {
 
 	public enum State {
