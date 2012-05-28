@@ -31,6 +31,10 @@ public class Container {
 		return contents.remove(contents.size()-1);
 	}
 	
+	public int size() {
+		return contents.size();
+	}
+	
 	public void combine(Container c) {
 		contents.addAll(c.contents);
 	}
@@ -63,7 +67,7 @@ public class Container {
 
 	public void stir(int time) {
 		for (int i = 0; i < time && i + 1< contents.size(); i++) {
-			Collections.swap(contents, i, i+1);
+			Collections.swap(contents, contents.size()-i-1, contents.size()-i-2);
 		}
 	}
 }

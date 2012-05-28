@@ -38,6 +38,7 @@ public class Method {
 	public int n;
 	
 	public Method(String line, int n) throws ChefException {
+		line = line.trim();
 		this.n = n;
 		Matcher[] matchers = {
 				Pattern.compile("^Take ([a-zA-Z ]+) from refrigerator.$").matcher(line),

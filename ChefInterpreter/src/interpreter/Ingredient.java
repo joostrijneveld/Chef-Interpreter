@@ -13,6 +13,7 @@ public class Ingredient {
 	public Ingredient(String ingredient) throws ChefException {
 		String[] tokens = ingredient.split(" ");
 		int i = 0;
+		state = Ingredient.State.Dry;
 		if (tokens[i].matches("^\\d*$"))
 		{
 			amount = Integer.parseInt(tokens[i]);

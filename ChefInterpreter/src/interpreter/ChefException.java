@@ -20,6 +20,11 @@ public class ChefException extends Exception {
 		super("Method error, step "+(step+1)+": "+method+" ("+error+")");
 	}
 	
+	public ChefException(int type, Recipe recipe, int step, String method,
+			String error) {
+		super("Method error, recipe "+recipe.getTitle()+", step "+(step+1)+": "+method+" ("+error+")");
+	}
+
 	private static String typeToText(int type)
 	{
 		return type == STRUCTURAL ? "Structural error: " : "Local error: ";

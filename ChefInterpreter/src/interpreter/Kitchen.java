@@ -72,7 +72,7 @@ public class Kitchen {
 				case StirInto :
 				case Verb :
 					if (ingredients.get(m.ingredient) == null)
-						throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Ingredient not found: "+m.ingredient);
+						throw new ChefException(ChefException.METHOD, recipe, m.n, m.type.toString(), "Ingredient not found: "+m.ingredient);
 			}
 			switch (m.type) {
 				case Take : 
@@ -82,6 +82,8 @@ public class Kitchen {
 					mixingbowls[m.mixingbowl].push(new Component(ingredients.get(m.ingredient)));
 					break;
 				case Fold :
+					if (mixingbowls[m.mixingbowl].size() == 0)
+						throw new ChefException(ChefException.METHOD, recipe, m.n, m.type.toString(), "Folded from empty mixing bowl: "+(m.mixingbowl + 1));
 					c = mixingbowls[m.mixingbowl].pop();
 					ingredients.get(m.ingredient).setAmount(c.getValue());
 					ingredients.get(m.ingredient).setState(c.getState());
