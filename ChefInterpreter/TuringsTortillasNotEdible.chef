@@ -1,0 +1,137 @@
+Turings Tortillas
+
+This is a turing machine in Chef. What? Yeah, really. It is. Just make sure you deliver a large enough tape.
+1st & 2nd mixing bowl = tape
+3 & 4 = writebit
+5 & 6 = directionbit (1 = R, 0 = L)
+7 & 8 = statebit (0 = endstate)
+9: store tapelength
+10: store statecount
+11: store currentstate/state
+12: store tape position
+State Leesbit Schrijfbit Richting(L=0, R=1) State(0=eindstate)
+Example STDIN for turing program that does addition:
+8
+1 1 0 1 1 1 1 0
+3
+1 1 1 1 1
+1 0 1 1 2
+2 1 1 1 2
+2 0 0 0 3
+3 1 0 0 0
+3 0	0 0 0
+
+Ingredients.
+tapelength
+0 tapepos
+bit
+statecount
+trash
+writebit
+direction
+state
+1 currentstate
+1 one
+2 two
+
+Methods.
+Put tapepos into 12th mixing bowl.
+Take tapelength from refrigerator.
+Put tapelength into 9th mixing bowl.
+Verb the tapelength.
+	Take bit from refrigerator.
+	Put bit into 1st mixing bowl.
+Verb the tapelength until verbed.
+Fold tapelength into 9th mixing bowl.
+Put tapelength into 9th mixing bowl.
+Verb the tapelength.
+	Fold bit into 1st mixing bowl.
+	Put bit into 2nd mixing bowl.
+Verb the tapelength until verbed.
+Remember that the tape is now read and stored in the 1st and 2nd mixing bowls.
+Take statecount from refrigerator.
+Put statecount into 10th mixing bowl.
+Combine two into 10th mixing bowl.
+Fold statecount into 10th mixing bowl.
+Put statecount into 10th mixing bowl.
+Verb the statecount.
+	Take trash from refrigerator.
+	Take trash from refrigerator.
+	Take writebit from refrigerator.
+	Take direction from refrigerator.
+	Take state from refrigerator.
+	Put writebit into 3rd mixing bowl.
+	Put direction into 5th mixing bowl.
+	Put state into 7th mixing bowl.
+Verb the statecount until verbed.
+Fold statecount into 10th mixing bowl.
+Put statecount into 10th mixing bowl.
+Verb the statecount.
+	Fold writebit into 3rd mixing bowl.
+	Put writebit into 4th mixing bowl.
+	Fold direction into 5th mixing bowl.
+	Put direction into 6th mixing bowl.
+	Fold state into 7th mixing bowl.
+	Put state into 8th mixing bowl.
+Verb the statecount until verbed.
+Remember that the program is now read and stored in the 3rd to 8th mixing bowls.
+Loop the currentstate.
+	Put currentstate into 11th mixing bowl.
+	Combine two into 11th mixing bowl.
+	Fold bit into 2nd mixing bowl.
+	Put bit into 2nd mixing bowl.
+	Verb the bit.
+		Remove one from 11th mixing bowl.
+	Verb the bit until verbed.
+	Fold currentstate into 11th mixing bowl.
+	Put currentstate into 11th mixing bowl.
+	Remember we now corrected the current state for the bit at the current pos: line is state times 2 minus bit.
+	Verb the currentstate.
+		Fold writebit into 4th mixing bowl.
+		Put writebit into 3rd mixing bowl.
+		Fold direction into 6th mixing bowl.
+		Put direction into 5th mixing bowl.
+		Fold state into 8th mixing bowl.
+		Put state into 7th mixing bowl.
+	Verb the currentstate until verbed.
+	Remember we now scrolled to the proper program line.
+	Fold trash into 2nd mixing bowl.
+	Put writebit into 2nd mixing bowl.
+	Remember we now overwrote the bit on the tape.
+	Verb the direction.
+		Add one to 12th mixing bowl.
+		Fold bit into 2nd mixing bowl.
+		Put bit into 1st mixing bowl.
+	Verb the direction until verbed.
+	Fold direction into the 5th mixing bowl.
+	Put direction into the 5th mixing bowl.
+	Remove one from 2th mixing bowl.
+	Fold bit into 1st mixing bowl.
+	Put bit into 2nd mixing bowl.
+	Verb the direction.
+		Add one to 12th mixing bowl.
+		Fold bit into 2nd mixing bowl.
+		Put bit into 1st mixing bowl.
+	Verb the direction until verbed.
+	Remember we moved one pace right if dir is 1, then 1 left, then another right if dir is 1.
+	Fold currentstate into 11th mixing bowl.
+	Put state into 11th mixing bowl.
+	Verb the currentstate.
+		Fold writebit into 3rd mixing bowl.
+		Put writebit into 4th mixing bowl.
+		Fold direction into 5th mixing bowl.
+		Put direction into 6th mixing bowl.
+		Fold state into 7th mixing bowl.
+		Put state into 8th mixing bowl.
+	Verb the currentstate until verbed.
+	Remember we now scrolled to the beginning of the program.
+	Fold currentstate into 11th mixing bowl.
+Verb until looped.
+Fold tapepos into 12th mixing bowl.
+Verb the tapepos.
+	Fold bit into 1st mixing bowl.
+	Put bit into 2nd mixing bowl.
+Verb the tapepos until verbed.
+Pour contents of the 2nd mixing bowl into the baking dish.
+
+Serves 1.

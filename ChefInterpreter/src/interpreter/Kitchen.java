@@ -172,6 +172,8 @@ public class Kitchen {
 						serve(m.time);
 					deepfrozen = true;
 					break;
+				case Remember :
+					break;
 				default :
 					throw new ChefException(ChefException.METHOD, m.n, m.type.toString(), "Unsupported method found!");
 			}

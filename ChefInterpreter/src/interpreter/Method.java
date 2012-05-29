@@ -25,7 +25,8 @@ public class Method {
 		VerbUntil,
 		SetAside,
 		Serve,
-		Refrigerate
+		Refrigerate,
+		Remember
 	}
 	
 	public String ingredient;
@@ -55,6 +56,7 @@ public class Method {
 				Pattern.compile("^Set aside.$").matcher(line),
 				Pattern.compile("^Refrigerate( for (\\d+) hours)?.$").matcher(line),
 				Pattern.compile("^Serve with ([a-zA-Z ]+).$").matcher(line),
+				Pattern.compile("^Remember ([a-zA-Z0-9 :,=]+).$").matcher(line),
 				Pattern.compile("^([a-zA-Z]+)( the ([a-zA-Z ]+))? until ([a-zA-Z]+).$").matcher(line),
 				Pattern.compile("^([a-zA-Z]+) the ([a-zA-Z ]+).$").matcher(line)
 				}; 
@@ -121,14 +123,17 @@ public class Method {
 			auxrecipe = matchers[13].group(1);
 		}
 		else if (matchers[14].find()) {
-			type = Type.VerbUntil;
-			verb = matchers[14].group(4);
-			ingredient = matchers[14].group(3);
+			type = Type.Remember;
 		}
 		else if (matchers[15].find()) {
+			type = Type.VerbUntil;
+			verb = matchers[15].group(4);
+			ingredient = matchers[15].group(3);
+		}
+		else if (matchers[16].find()) {
 			type = Type.Verb;
-			verb = matchers[15].group(1);
-			ingredient = matchers[15].group(2);
+			verb = matchers[16].group(1);
+			ingredient = matchers[16].group(2);
 		}
 		else
 			throw new ChefException(ChefException.METHOD, n, line, "Unsupported method found!");
