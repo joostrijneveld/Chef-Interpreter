@@ -56,7 +56,7 @@ public class Method {
 				Pattern.compile("^Set aside.$").matcher(line),
 				Pattern.compile("^Refrigerate( for (\\d+) hours)?.$").matcher(line),
 				Pattern.compile("^Serve with ([a-zA-Z ]+).$").matcher(line),
-				Pattern.compile("^Remember ([a-zA-Z0-9 :,=]+).$").matcher(line),
+				Pattern.compile("^Suggestion: (.*).$").matcher(line),
 				Pattern.compile("^([a-zA-Z]+)( the ([a-zA-Z ]+))? until ([a-zA-Z]+).$").matcher(line),
 				Pattern.compile("^([a-zA-Z]+) the ([a-zA-Z ]+).$").matcher(line)
 				}; 

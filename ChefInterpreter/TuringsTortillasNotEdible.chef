@@ -1,6 +1,6 @@
 Turings Tortillas
 
-This is a turing machine in Chef. What? Yeah, really. It is. Just make sure you deliver a large enough tape.
+This is a universal turing machine in Chef. What? Yeah, really. It is. Just make sure you deliver a large enough tape.
 1st & 2nd mixing bowl = tape
 3 & 4 = writebit
 5 & 6 = directionbit (1 = R, 0 = L)
@@ -43,12 +43,11 @@ Verb the tapelength.
 	Put bit into 1st mixing bowl.
 Verb the tapelength until verbed.
 Fold tapelength into 9th mixing bowl.
-Put tapelength into 9th mixing bowl.
 Verb the tapelength.
 	Fold bit into 1st mixing bowl.
 	Put bit into 2nd mixing bowl.
 Verb the tapelength until verbed.
-Remember that the tape is now read and stored in the 1st and 2nd mixing bowls.
+Suggestion: that the tape is now read and stored in the 1st and 2nd mixing bowls.
 Take statecount from refrigerator.
 Put statecount into 10th mixing bowl.
 Combine two into 10th mixing bowl.
@@ -65,7 +64,6 @@ Verb the statecount.
 	Put state into 7th mixing bowl.
 Verb the statecount until verbed.
 Fold statecount into 10th mixing bowl.
-Put statecount into 10th mixing bowl.
 Verb the statecount.
 	Fold writebit into 3rd mixing bowl.
 	Put writebit into 4th mixing bowl.
@@ -74,7 +72,7 @@ Verb the statecount.
 	Fold state into 7th mixing bowl.
 	Put state into 8th mixing bowl.
 Verb the statecount until verbed.
-Remember that the program is now read and stored in the 3rd to 8th mixing bowls.
+Suggestion: that the program is now read and stored in the 3rd to 8th mixing bowls.
 Loop the currentstate.
 	Put currentstate into 11th mixing bowl.
 	Combine two into 11th mixing bowl.
@@ -85,7 +83,7 @@ Loop the currentstate.
 	Verb the bit until verbed.
 	Fold currentstate into 11th mixing bowl.
 	Put currentstate into 11th mixing bowl.
-	Remember we now corrected the current state for the bit at the current pos: line is state times 2 minus bit.
+	Suggestion: we now corrected the current state for the bit at the current pos: line is state times 2 minus bit.
 	Verb the currentstate.
 		Fold writebit into 4th mixing bowl.
 		Put writebit into 3rd mixing bowl.
@@ -94,10 +92,10 @@ Loop the currentstate.
 		Fold state into 8th mixing bowl.
 		Put state into 7th mixing bowl.
 	Verb the currentstate until verbed.
-	Remember we now scrolled to the proper program line.
+	Suggestion: we now scrolled to the proper program line.
 	Fold trash into 2nd mixing bowl.
 	Put writebit into 2nd mixing bowl.
-	Remember we now overwrote the bit on the tape.
+	Suggestion: we now overwrote the bit on the tape.
 	Verb the direction.
 		Add one to 12th mixing bowl.
 		Fold bit into 2nd mixing bowl.
@@ -105,7 +103,7 @@ Loop the currentstate.
 	Verb the direction until verbed.
 	Fold direction into the 5th mixing bowl.
 	Put direction into the 5th mixing bowl.
-	Remove one from 2th mixing bowl.
+	Remove one from 12th mixing bowl.
 	Fold bit into 1st mixing bowl.
 	Put bit into 2nd mixing bowl.
 	Verb the direction.
@@ -113,7 +111,7 @@ Loop the currentstate.
 		Fold bit into 2nd mixing bowl.
 		Put bit into 1st mixing bowl.
 	Verb the direction until verbed.
-	Remember we moved one pace right if dir is 1, then 1 left, then another right if dir is 1.
+	Suggestion: we moved one pace right if dir is 1, then 1 left, then another right if dir is 1.
 	Fold currentstate into 11th mixing bowl.
 	Put state into 11th mixing bowl.
 	Verb the currentstate.
@@ -124,7 +122,7 @@ Loop the currentstate.
 		Fold state into 7th mixing bowl.
 		Put state into 8th mixing bowl.
 	Verb the currentstate until verbed.
-	Remember we now scrolled to the beginning of the program.
+	Suggestion: we now scrolled to the beginning of the program.
 	Fold currentstate into 11th mixing bowl.
 Verb until looped.
 Fold tapepos into 12th mixing bowl.
