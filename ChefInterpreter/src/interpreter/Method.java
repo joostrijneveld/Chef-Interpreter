@@ -77,7 +77,6 @@ public class Method {
 			type = matchers[3].group(1).equals("Add") ? Type.Add : (matchers[3].group(1).equals("Remove") ? Type.Remove : (matchers[3].group(1).equals("Combine") ? Type.Combine : Type.Divide));
 			ingredient = matchers[3].group(2);
 			mixingbowl = (matchers[3].group(6) == null ? 1 : Integer.parseInt(matchers[3].group(6))) - 1;
-
 		}
 		else if (matchers[4].find()) {
 			type = Type.LiquefyBowl;

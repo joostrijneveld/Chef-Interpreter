@@ -193,6 +193,7 @@ public class Kitchen {
 		imp = imp.toLowerCase();
 		int L = imp.length();
 		return verb.equals(imp) || //A = A
+				verb.equals(imp+"n") || //shake ~ shaken
 				verb.equals(imp+"d") || //prepare ~ prepared
 				verb.equals(imp+"ed") || //monitor ~ monitored
 				verb.equals(imp+(imp.charAt(L-1))+"ed") || //stir ~ stirred
