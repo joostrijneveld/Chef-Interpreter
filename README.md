@@ -8,3 +8,7 @@ The syntax is nearly identical to what David proposed - we had to make design ch
 Formal Syntax
 =============
 TODO
+
+## License
+
+This interpreter was written by Wesley Janssen, Joost Rijneveld and Mathijs Vos. All included code is available under the CC0 1.0 Universal Public Domain Dedication.
