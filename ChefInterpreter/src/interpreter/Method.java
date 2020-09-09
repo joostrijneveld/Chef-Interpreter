@@ -45,7 +45,7 @@ public class Method {
 				Pattern.compile("^Take ([a-zA-Z ]+) from refrigerator.$").matcher(line),
 				Pattern.compile("^(Put|Fold) ([a-zA-Z ]+) into( the)?( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Add dry ingredients( to( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
-				Pattern.compile("^(Add|Remove|Combine|Divide) ([a-zA-Z ]+)( (to|into|from)( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
+				Pattern.compile("^(Add|Remove|Combine|Divide) ([a-zA-Z ]+?)( (to|into|from)( (\\d+)(nd|rd|th|st))? mixing bowl)?.$").matcher(line),
 				Pattern.compile("^Liquefy contents of the( (\\d+)(nd|rd|th|st))? mixing bowl.$").matcher(line),
 				Pattern.compile("^Liquefy ([a-zA-Z ]+).$").matcher(line),
 				Pattern.compile("^Stir( the( (\\d+)(nd|rd|th|st))? mixing bowl)? for (\\d+) minutes.$").matcher(line),
@@ -57,7 +57,7 @@ public class Method {
 				Pattern.compile("^Refrigerate( for (\\d+) hours)?.$").matcher(line),
 				Pattern.compile("^Serve with ([a-zA-Z ]+).$").matcher(line),
 				Pattern.compile("^Suggestion: (.*).$").matcher(line),
-				Pattern.compile("^([a-zA-Z]+)( the ([a-zA-Z ]+))? until ([a-zA-Z]+).$").matcher(line),
+				Pattern.compile("^([a-zA-Z]+?)( the ([a-zA-Z ]+))? until ([a-zA-Z]+).$").matcher(line),
 				Pattern.compile("^([a-zA-Z]+) the ([a-zA-Z ]+).$").matcher(line)
 				}; 
 		if (matchers[0].find()) {
